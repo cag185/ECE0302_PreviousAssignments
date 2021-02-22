@@ -1,0 +1,5 @@
+/home/cag185/Desktop/C++/Homework_0/Homework_0 part 4/CMakeFiles/rebuild_cache.dir
+/home/cag185/Desktop/C++/Homework_0/Homework_0 part 4/CMakeFiles/edit_cache.dir
+/home/cag185/Desktop/C++/Homework_0/Homework_0 part 4/CMakeFiles/test.dir
+/home/cag185/Desktop/C++/Homework_0/Homework_0 part 4/CMakeFiles/submission.dir
+/home/cag185/Desktop/C++/Homework_0/Homework_0 part 4/CMakeFiles/add-tests.dir

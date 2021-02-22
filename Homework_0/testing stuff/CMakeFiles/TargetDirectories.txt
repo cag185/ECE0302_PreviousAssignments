@@ -1,0 +1,3 @@
+/home/cag185/Desktop/C++/Homework_0/CMakeFiles/rebuild_cache.dir
+/home/cag185/Desktop/C++/Homework_0/CMakeFiles/edit_cache.dir
+/home/cag185/Desktop/C++/Homework_0/CMakeFiles/hello.dir
