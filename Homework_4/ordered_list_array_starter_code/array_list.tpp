@@ -1,5 +1,7 @@
 #include "array_list.hpp"
 
+
+
 template <typename T>
 ArrayList<T>::ArrayList() {
   //constructor
