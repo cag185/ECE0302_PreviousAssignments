@@ -86,7 +86,7 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
   {
     resizeArray();
   }
-
+  /* TESTING
   //case 1
   //position will be 1, first index of the pointer array
   if(position == 1)
@@ -156,7 +156,7 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
     usedSpace++;
     //free memory
     delete [] tempPoint;
-  }
+  } */
   return true;
 }
 
@@ -204,8 +204,8 @@ usedSpace = 0;
 //gets an entry from the array at a specific index
 template <typename T>
 T ArrayList<T>::getEntry(std::size_t position) const {
-  //return arrPoint[position];
-  return *(arrPoint + position+ 1);
+  return arrPoint[position];
+  //return *(arrPoint + position+ 1);
 }
 
 //set the value of the aray at the listed index
