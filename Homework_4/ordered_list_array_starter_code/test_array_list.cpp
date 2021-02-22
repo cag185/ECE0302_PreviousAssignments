@@ -30,8 +30,8 @@ TEST_CASE( "Copy Constructor", "[ArrayList]" ) {
 
   //require that the elements copied over as well
   //REQUIRE(list.getEntry(1) == 1);
-  //REQUIRE(list.getEntry(2) == 2);
-  REQUIRE(list.getEntry(-3) == 3);
+  REQUIRE(list.getEntry(2) == 2);
+  REQUIRE(list.getEntry(1) == 3);
 }
 
 TEST_CASE( "Copy Assignment", "[ArrayList]" ) {

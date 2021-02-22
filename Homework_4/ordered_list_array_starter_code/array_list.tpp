@@ -84,7 +84,7 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
   //check to see if the array needs to be resized before insertion
   if(arrSize == usedSpace)
   {
-    resizeArray();
+    resizeArray(); // definitly works
   }
   //PERFORM A BASIC TEST
   for(std::size_t i = 1; i < usedSpace; i++)
@@ -93,7 +93,7 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
   }
   tempPoint[usedSpace + 1] = item;
   usedSpace++;
-  for(std::size_t j = 1; j<usedSpace; j++)
+  for(std::size_t j = 1; j<usedSpace+1; j++)
   {
     arrPoint[j] = tempPoint[j];
   }
