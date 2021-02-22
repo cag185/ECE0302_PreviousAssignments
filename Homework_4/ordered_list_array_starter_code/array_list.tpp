@@ -86,6 +86,19 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
   {
     resizeArray();
   }
+  //PERFORM A BASIC TEST
+  for(std::size_t i = 1; i < usedSpace; i++)
+  {
+    tempPoint[i] = arrPoint[i];
+  }
+  tempPoint[usedSpace + 1] = item;
+  usedSpace++;
+  for(std::size_t j = 1; j<usedSpace; j++)
+  {
+    arrPoint[j] = tempPoint[j];
+  }
+  //delete tempPoint
+  delete[] tempPoint;
   /* TESTING
   //case 1
   //position will be 1, first index of the pointer array
