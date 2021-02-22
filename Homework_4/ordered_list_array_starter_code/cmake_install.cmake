@@ -1,4 +1,4 @@
-# Install script for directory: /home/cag185/Desktop/C++/Homework_4/ordered_list_array_starter_code
+# Install script for directory: /home/cag185/Desktop/C++/Previous Assignments/Homework_4/ordered_list_array_starter_code
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/cag185/Desktop/C++/Homework_4/ordered_list_array_starter_code/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/cag185/Desktop/C++/Previous Assignments/Homework_4/ordered_list_array_starter_code/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
