@@ -9,7 +9,7 @@ ArrayList<T>::ArrayList() {
 }
 
 template <typename T>
-ArrayList<T>::~ArrayList() { // isdfjlskjdf
+ArrayList<T>::~ArrayList() { 
   //destructor, free memory
   delete [] arrPoint; // frees memory
 }
