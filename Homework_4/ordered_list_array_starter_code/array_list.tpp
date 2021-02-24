@@ -4,8 +4,9 @@ template <typename T>
 ArrayList<T>::ArrayList() {
   //constructor
   //allocate memory
-  
+  arrSize = 1;
   arrPoint = new T [arrSize]; // creates a new array, dynamically allocated, size arrSize
+  usedSpace = 0;
 }
 
 template <typename T>
@@ -17,20 +18,16 @@ ArrayList<T>::~ArrayList() {
 template <typename T>
 ArrayList<T>::ArrayList(const ArrayList & rhs){
   //copy constructor, copies data from one array into another
-  //create dynamically allocated array
- // T * arrPoint;
-  arrPoint = new T [arrSize];
+  usedSpace = rhs.getLength();
+  arrSize = rhs.getArraySize();
+  arrPoint = new T [arrSize]; // makes arrPoint the correct size
 
-  //check for imcompatible array sizes
-  while (arrSize < rhs.getLength())
+  //copy all values
+  for(std::size_t i = 1; i <= arrSize; i++)
   {
-    resizeArray(); // resize array function
+    arrPoint[i] = rhs.getEntry(i);
   }
-  for (std::size_t i = 1; i<arrSize; i++)
-  {
-    //copy each value of old array into new array
-    arrPoint[i] = rhs.getEntry(i); // copies each value from rhs into pointer to D.A.A
-  }
+
 }
 
 //assign all values of the old D.A.A to the new
@@ -49,128 +46,140 @@ ArrayList<T> & ArrayList<T>::operator=(const ArrayList & rhs){
   return *this;
 }
 
-//determine if list is empty, return T/F
+//determine if list is empty, return T/F -- WORKS
 template <typename T>
 bool ArrayList<T>::isEmpty() const{
-  if(arrSize ==0)
+  if(usedSpace ==0)
   {return true;}
   else
   {return false;};
 }
 
-//return size of arrSize
+//return size of arrSize -- WORKS
 template <typename T>
 std::size_t ArrayList<T>::getLength() const{
   return usedSpace;
 }
 
-//insert an item into the list array at index positon
+ // return the size of the actual array
+  template <typename T>
+  std::size_t ArrayList<T>::getArraySize() const
+  {
+    return arrSize;
+
+  }
+
+//insert an item into the list array at index positon -- WORKS
 template <typename T>
 bool ArrayList<T>::insert(std::size_t position, const T& item){
   //check for special cases
-    //1. insert at the very beggining
-    //2. insert at the very end
-    //3. insert any place in the middle
+    //1. insert at the very beggining and array empty
+    //2. insert at beggining, not empty
+    //3. insert at the very end
+    //4. insert any place in the middle
 
-  //also check for invalid position
-  if(position < 1 || position > usedSpace + 1)
-  {
-    return false;
-  }
-  //create a new pointer to an array
-  T * tempPoint;
-  tempPoint = new T [arrSize];
+    //check for out of bounds
+    if(position > arrSize + 1)
+    {
+      return false;
+    }
+    //Case 1
+    if(arrSize == 1 && isEmpty() == true)
+    {
+      arrPoint[1] = item;
+      usedSpace++;
+      return true;
+    }
+    //use the second pointer to copy all values of the original after 1
+    //create second pointer
+    T *tempPoint;
+    tempPoint = new T [arrSize];
 
-  //check to see if the array needs to be resized before insertion
-  if(arrSize == usedSpace)
-  {
-    resizeArray(); // definitly works
-  }
-  //PERFORM A BASIC TEST
-  for(std::size_t i = 1; i < usedSpace; i++)
-  {
-    tempPoint[i] = arrPoint[i];
-  }
-  tempPoint[usedSpace + 1] = item;
-  usedSpace++;
-  for(std::size_t j = 1; j<usedSpace+1; j++)
-  {
-    arrPoint[j] = tempPoint[j];
-  }
-  //delete tempPoint
-  delete[] tempPoint;
-  /* TESTING
-  //case 1
-  //position will be 1, first index of the pointer array
-  if(position == 1)
-  {
-    tempPoint[1] = item;
-    for(std::size_t i = 2; i< arrSize;i++)
+    //Case 2
+    if(position == 1 && usedSpace >= 1)
     {
-      //assign values from old array into new
-      tempPoint[i] = arrPoint[i-1]; // arrPoint[i-1] because we are adding one extra to tempPoint than arrPoint
-    }
-    //now that tempPoint is copied all over, want to send that back to arrPoint
-    for(std::size_t b = 1; b<arrSize; b++)
-    {
-      arrPoint[b] = tempPoint[b];
-    }
-    //increase usedSpace
-    usedSpace++;
-    //free memory
-    delete [] tempPoint;
-  }
+      //check if the array needs to be resized
+      if(usedSpace == arrSize)
+      {
+       resizeArray();
+      }
 
-  //case 2
-  //position is any middle part
-  if(position > 1 && position < usedSpace)
-  {
-    //copy everything before pos
-    for(std::size_t alpha= 1; alpha < position; alpha++ )
+      tempPoint[1] = item;
+      for(std::size_t i = 2; i <= arrSize; i++)
+      {
+        //copy all values
+        tempPoint[i] = arrPoint[i-1];
+      }
+      //copy all values back into arrayPoint
+      for(std::size_t j = 1; j<=arrSize;j++)
+      {
+        //copy all values back
+        arrPoint[j] = tempPoint[j];
+      }
+      //free memory
+      delete [] tempPoint;
+      //increase size
+      usedSpace++;
+      return true;
+    } 
+
+    //Case 3
+    if(position > 1 && position == usedSpace+1) // at the end of the used space in the array
     {
-      tempPoint[alpha] = arrPoint[alpha];
-    }
-    //copy value at pos
-    tempPoint[position] = item;
-    //copy everything after position
-    for(std::size_t beta = position+1; beta<arrSize; beta++)
-    {
-      tempPoint[beta] = arrPoint[beta + 1];
+      //check if we need to resize
+      if(usedSpace == arrSize)
+      {
+        resizeArray();
+      }
+      //copy everything from arrPoint to tempPoint
+      for(std::size_t i = 1; i<=usedSpace; i++)
+      {
+        tempPoint[i] = arrPoint[i];
+      }
+      tempPoint[position] = item; // last item is tacked on
+      //loop through and recopy all values
+      for(std::size_t a = 1; a<= arrSize; a++)
+      {
+        arrPoint[a] = tempPoint[a];
+      }
+      //increase used space
+      usedSpace++;
+      //release memory
+      delete [] tempPoint;
+      //return
+      return true;
     }
 
-    //copy everything back into arrPoint
-    for(std::size_t omega = 1; omega < arrSize; omega++ )
+    //Case 4
+    if (position > 1 && position < usedSpace) // in the middle
     {
-      arrPoint[omega] = arrPoint[omega];
+      //check if the array needs to be resized
+      if(usedSpace == arrSize)
+      {
+       resizeArray();
+      }
+      for(std::size_t i = 1; i < position; i++)
+      {
+        tempPoint[i] = arrPoint[i];
+      }
+      tempPoint[position] = item;
+      for(std::size_t j = position + 1; j<arrSize; j++)
+      {
+        tempPoint[j] = arrPoint[j-1];
+      }
+      //now copy everything from temp pointer to array pointer
+      for(std::size_t a = 1; a< arrSize; a++)
+      {
+        arrPoint[a] = tempPoint[a];
+      }
+      //increase size
+      usedSpace++;
+      //delete temp point
+      delete [] tempPoint;
+      //return
+      return true;
     }
-    //increase usedSpace
-    usedSpace++;
-    //free memory
-    delete [] tempPoint;
-  }
-
-  //case 3
-  //position is at the end of the array
-  if(position > usedSpace)
-  {
-    for(std::size_t w = 1; w<position; w++)
-    {
-     tempPoint[w] = arrPoint[w]; //copies all values until position
-    }
-    //add on last value
-    tempPoint[position] = item;
-    //copy all elements of tempPoint back into arrPoint
-    for(std::size_t i = 1; i<usedSpace + 1; i++)
-    {
-      //copy all values
-      arrPoint[i] = tempPoint[i];
-    }
-    //increase usedSpace
-    usedSpace++;
-    //free memory
-    delete [] tempPoint;
-  } */
-  return true;
+  return false;
 }
 
 // remove item at position in the list using 1-based indexing
@@ -235,7 +244,7 @@ T *arrPoint2; //create another pointer
 arrPoint2 = new T [2 * arrSize]; //create a new array that is double the size of the old one
 
 //assign all the values from old array into new array - index at 1
-for(int i = 1; i < (int)arrSize; i++)
+for(std::size_t i = 1; i <= arrSize; i++)
   {
     arrPoint2[i] = arrPoint[i];
   }
@@ -245,7 +254,7 @@ delete [] arrPoint;
 arrSize = arrSize * 2; //update arrSize
 //reassign arrPoint from arrPoint 2;
 arrPoint = new T [arrSize];
-for(std::size_t x; x< arrSize; x++) //assign all values of point2 to arraypoint
+for(std::size_t x = 1; x< arrSize; x++) //assign all values of point2 to arraypoint
 {
   arrPoint[x] = arrPoint2[x];
 }

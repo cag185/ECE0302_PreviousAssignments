@@ -18,20 +18,22 @@ TEST_CASE( "Copy Constructor", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
   //add some values to list
-  list.insert(1, 1);
-  list.insert(2, 2);
-  list.insert(3,3);
+  REQUIRE(list.insert(1, 10) == true);
+  REQUIRE(list.insert(2, 2) == true);
+  REQUIRE(list.insert(3, 3) == true);
   //arrSize should be = 4, used space = 3
   //test to make sure that items have been inserted in list
- // REQUIRE(list.getEntry(2) == 1);
-  ArrayList<int> list2(list); // creates a new list that is a copy of the old list
-
-  REQUIRE(list.getLength() == 3); 
-
-  //require that the elements copied over as well
-  //REQUIRE(list.getEntry(1) == 1);
+  REQUIRE(list.getEntry(1) == 10);
   REQUIRE(list.getEntry(2) == 2);
-  REQUIRE(list.getEntry(1) == 3);
+  REQUIRE(list.getEntry(3) == 3);
+
+  ArrayList<int> list2(list); // creates a new list that is a copy of the old list
+  REQUIRE(list2.getLength() == 3); //verify that num of elements copied over
+
+  //require that the elements copied over as well -- COPY CONSTRUCTOR MAKING MEMORY ISSUES
+  REQUIRE(list.getEntry(1) == 10);
+  REQUIRE(list.getEntry(2) == 2);
+ // REQUIRE(list.getEntry(1) == 3);
 }
 
 TEST_CASE( "Copy Assignment", "[ArrayList]" ) {

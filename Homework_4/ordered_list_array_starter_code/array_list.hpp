@@ -25,6 +25,9 @@ public:
 
   // return current length of the list
   std::size_t getLength() const;
+
+  // return the size of the actual array
+  std::size_t getArraySize() const;
   
   // insert item at position in the list using 1-based indexing
   bool insert(std::size_t position, const T& item);
@@ -48,9 +51,9 @@ private:
 
   // TODO
   //create variable to hold size
-  std::size_t arrSize = 1;
+  std::size_t arrSize;
   //variable to hold used space in array
-  std::size_t usedSpace = 0;
+  std::size_t usedSpace;
   //pointer to array of type t
   T *arrPoint;
   
