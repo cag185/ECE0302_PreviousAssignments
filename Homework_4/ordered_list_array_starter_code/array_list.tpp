@@ -89,7 +89,7 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
       return false;
     }
     //Case 1
-    if(arrSize == 1 && isEmpty() == true)
+    if(position == 1 && usedSpace == 0)
     {
       arrPoint[1] = item;
       usedSpace++;
@@ -232,6 +232,32 @@ bool ArrayList<T>::remove(std::size_t position){
     usedSpace--;
     //free memory
     delete [] tempPoint;
+    //return
+    return true;
+  }
+
+  //3. item removed in random spot
+  if(position > 1 && position < usedSpace)
+  {
+    //copy all elements before position
+    for(std::size_t i = 1; i < position; i++)
+    {
+      tempPoint[i] = arrPoint[i];
+    }
+    //skip position
+    for(std::size_t j = position + 1; j <= arrSize; j++)
+    {
+      tempPoint[j-1] = arrPoint[j];
+    }
+    //copy all of tempPoint back to arrPoint
+    for(std::size_t a = 1; a<=arrSize; a++)
+    {
+      arrPoint[a] = tempPoint[a];
+    }
+    //release memory
+    delete [] tempPoint;
+    //decrease size
+    usedSpace--;
     //return
     return true;
   }

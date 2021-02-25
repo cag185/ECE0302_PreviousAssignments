@@ -96,7 +96,24 @@ TEST_CASE( "Remove", "[ArrayList]" ) {
   REQUIRE(list.remove(1) == true);
   REQUIRE(list.getLength() == 2);
   REQUIRE(list.getEntry(1) == 2);
-  REQUIRE(list.getEntry(2) == 3); // 
+  REQUIRE(list.getEntry(2) == 3); //works
+
+  //remove all elements
+  REQUIRE(list.remove(1) == true);
+  REQUIRE(list.remove(1) == true);
+  REQUIRE(list.getLength() == 0); // make sure array is clear
+
+  REQUIRE(list.insert(1, 1) == true);
+  REQUIRE(list.insert(2, 5) == true);
+  REQUIRE(list.insert(3, 100) == true);
+  REQUIRE(list.insert(4, 3) == true);
+  REQUIRE(list.insert(5, 2)== true); // added some values
+
+  REQUIRE(list.remove(3) == true);
+  REQUIRE(list.getLength() == 4);
+  REQUIRE(list.getEntry(3) != 100);
+  REQUIRE(list.getEntry(3) == 3); // all works, test case 3 good
+
 }
 
 TEST_CASE( "clear", "[ArrayList]" ) {
