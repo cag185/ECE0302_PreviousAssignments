@@ -64,7 +64,6 @@ template <typename T>
 bool LinkedList<T>::insert(std::size_t position, const T& item)
 {
   ///Cases for insertion
-    //1a. insert at the beginning and size = 0
     //1. insert at the beginning (index 1)
     //2. insert in the middle
     //3. insert at the end
@@ -72,8 +71,8 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
     //create a temp node
     Node <T>* newNodePtr = new Node<T>;
 
-    //1a. 
-    if(position == 1 && listLength == 0)
+    //case 1
+    if(position == 1)
     {
       //set value
       newNodePtr->setItem(item);
@@ -83,8 +82,10 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
       head = newNodePtr;
       //increase size
       listLength++;
+      //return
+      return true;
     }
-  return true;
+  return false;
 }
 
 //remove a value and shift list
@@ -102,12 +103,20 @@ void LinkedList<T>::clear()
   //TODO
 }
 
-//get a specific entry
+//get a specific entry -- works
 template <typename T>
 T LinkedList<T>::getEntry(std::size_t position) const
 {
-  //TODO
-  return T();
+  //create temp pointer
+  Node<T>* newNodePointer = new Node<T>;
+  newNodePointer = head;
+  //create a loop that starts at head and for Position times, returns the value of data
+  for(std::size_t i = 1; i < position; i++ )
+  {
+    newNodePointer = newNodePointer->getNext();
+  }
+  //return the value at index postion
+  return newNodePointer->getItem();
 }
 
 //set a specific position to a value
