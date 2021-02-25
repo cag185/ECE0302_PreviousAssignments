@@ -157,6 +157,22 @@ TEST_CASE( "getEntry", "[ArrayList]" ) {
 TEST_CASE( "setEntry", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
+  //create some entries
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(2,2) == true);
+  REQUIRE(list.insert(3,2) == true);
+  REQUIRE(list.insert(4,3) == true);
+  REQUIRE(list.insert(5,4) == true);
+
+  //reset a few
+  list.setEntry(3,3);
+  list.setEntry(4,4);
+  list.setEntry(5,5);
+
+  //check
+  REQUIRE(list.getEntry(3) == 3);
+  REQUIRE(list.getEntry(4) == 4);
+  REQUIRE(list.getEntry(5) == 5);// WORKS
 }
 
 TEST_CASE( "resizeArray", "[ArrayList]" ) {
