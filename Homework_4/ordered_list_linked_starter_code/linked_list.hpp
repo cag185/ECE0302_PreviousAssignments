@@ -49,10 +49,10 @@ private:
 
   //Need three pointers
     //1. head
-    //2. tail
-    //3. next -- already created in Node
+    //3. nodePtr
   Node <T>* head; //creates head pointer
-  Node <T>* tail; //creates tail
+  Node <T>* nodePtr; // creates a node pointer to use
+  std::size_t listLength;
   
 };
 
