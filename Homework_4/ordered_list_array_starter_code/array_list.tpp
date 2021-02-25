@@ -67,8 +67,8 @@ std::size_t ArrayList<T>::getLength() const{
 }
 
  // return the size of the actual array
-  template <typename T>
-  std::size_t ArrayList<T>::getArraySize() const
+template <typename T>
+std::size_t ArrayList<T>::getArraySize() const
   {
     return arrSize;
 
@@ -195,36 +195,54 @@ bool ArrayList<T>::remove(std::size_t position){
   {
     return false;
   }
-  else{   //position is within range
-  //create a temporary pointer to a D.A.A.
-  T * tempPoint;
-  tempPoint = new T [arrSize]; // space allocated = space of arrPoint
-  //We want to copy everything from before the positoin and store it into the temp array
-  for(std::size_t i = 1; i < position; i++)
+  //if position is within range
+  //CASES
+    //1. the item is at the beggining of array where size = 1
+    //2. the item is at the beggining of array where size > 1
+    //3. the item is in a random spot in the middle
+    //4. the item is at the end
+
+    //create a temp pointer
+    T *tempPoint;
+    tempPoint= new T [arrSize];
+  //1. 
+  if(arrSize == 1 && position == 1)
   {
-    tempPoint[i] = arrPoint[i];
+    delete [] arrPoint; //removes all elements
+    arrSize = 1;
+    arrPoint = new T [arrSize]; // resets array size to 1
+    usedSpace--; // decriment usedSpace
+    return true;
   }
-  //remove the thing at Position by not inlcuding it
-  for(std::size_t j = position; j <usedSpace; j++)
+  //2.
+  if(arrSize > 1 && position == 1)
   {
-    tempPoint[j] = arrPoint[j+1]; // copies everything AFTER position
+    //need to remove first element and shift everything back by one
+    //copy all elements of OG array minus the beggining
+    for(std::size_t i = 1; i <= arrSize; i++)
+    {
+      tempPoint[i] = arrPoint[i+1]; // tempPoint holds values 2-n
+    }
+    //copy all back to array
+    for(std::size_t a = 1; a <= arrSize; a++)
+    {
+      arrPoint[a] = tempPoint[a]; // array holds shifted values
+    }
+    //reduce size
+    usedSpace--;
+    //free memory
+    delete [] tempPoint;
+    //return
+    return true;
   }
-  //store everything from temp point back into the array pointer
-  for(std::size_t a = 1; a<usedSpace; a++)
-  {
-    arrPoint[a] = tempPoint[a];
-  }
-  //free up the temporary pointer
-  delete [] tempPoint;
-  }
-  return true;
+  return false;
 }
 
 template <typename T>
 void ArrayList<T>::clear() {
 //deallocate the memory
 delete [] arrPoint;
-arrPoint = new T [arrSize];
+arrPoint = new T [arrSize]; // same size array as before, but intiialized to 0
 usedSpace = 0;
 }
 

@@ -75,16 +75,28 @@ TEST_CASE( "Insert", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
   //insert a few values
-REQUIRE(list.insert(1,100) == true);
-REQUIRE(list.insert(2,200) == true);
-//make sure size increased
-REQUIRE(list.getLength() == 2);
-
+  REQUIRE(list.insert(1,100) == true);
+  REQUIRE(list.insert(2,200) == true);
+  //make sure size increased
+  REQUIRE(list.getLength() == 2);
 }
 
 TEST_CASE( "Remove", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
+  //add a value
+  REQUIRE(list.insert(1,1) == true);
+  //make sure it removes
+  REQUIRE(list.remove(1) == true); // works
+  //test for an array that has more than 1 element, remove from beginning
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(2,2) == true);
+  REQUIRE(list.insert(3,3) == true);
+  //remove first element
+  REQUIRE(list.remove(1) == true);
+  REQUIRE(list.getLength() == 2);
+  REQUIRE(list.getEntry(1) == 2);
+  REQUIRE(list.getEntry(2) == 3); // 
 }
 
 TEST_CASE( "clear", "[ArrayList]" ) {
