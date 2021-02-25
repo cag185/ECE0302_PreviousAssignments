@@ -30,30 +30,56 @@ TEST_CASE( "Copy Constructor", "[ArrayList]" ) {
   ArrayList<int> list2(list); // creates a new list that is a copy of the old list
   REQUIRE(list2.getLength() == 3); //verify that num of elements copied over
 
-  //require that the elements copied over as well -- COPY CONSTRUCTOR MAKING MEMORY ISSUES
+  //require that the elements copied over as well 
   REQUIRE(list.getEntry(1) == 10);
   REQUIRE(list.getEntry(2) == 2);
- // REQUIRE(list.getEntry(1) == 3);
+  REQUIRE(list.getEntry(3) == 3);
 }
 
 TEST_CASE( "Copy Assignment", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
+  //assign a few values
+  REQUIRE(list.insert(1,10) == true);
+  REQUIRE(list.insert(2,20) == true);
+  REQUIRE(list.insert(3,30) == true);
+
+  //create a second list
+  ArrayList<int> list2;// empty so far
+  list2 = list; //copy assignment
+  //make sure values copied over and that the size is correct
+  REQUIRE(list2.getLength() ==3);
+  REQUIRE(list2.getEntry(1) == 10);
+  REQUIRE(list2.getEntry(2) == 20);
+  REQUIRE(list2.getEntry(3) == 30);
 }
 
 TEST_CASE( "isEmpty", "[ArrayList]" ) {
 
-  ArrayList<int> list; // creates an integer list
+  ArrayList<int> list; // creates an integer list // empty so far
+  REQUIRE(list.isEmpty() == true);
 }
 
 TEST_CASE( "getLength", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
+  REQUIRE(list.getLength()== 0);
+  //add some entries
+  REQUIRE(list.insert(1,1)== true);
+  REQUIRE(list.getLength() == 1);
+  REQUIRE(list.insert(2,2) == true);
+  REQUIRE(list.getLength() == 2);
 }
 
 TEST_CASE( "Insert", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
+  //insert a few values
+REQUIRE(list.insert(1,100) == true);
+REQUIRE(list.insert(2,200) == true);
+//make sure size increased
+REQUIRE(list.getLength() == 2);
+
 }
 
 TEST_CASE( "Remove", "[ArrayList]" ) {

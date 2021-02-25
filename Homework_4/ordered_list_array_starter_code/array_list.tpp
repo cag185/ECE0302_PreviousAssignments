@@ -33,16 +33,21 @@ ArrayList<T>::ArrayList(const ArrayList & rhs){
 //assign all values of the old D.A.A to the new
 template <typename T>
 ArrayList<T> & ArrayList<T>::operator=(const ArrayList & rhs){
-  //check for compatible array size
-  while(arrSize < rhs.getLength())
+  //copy assignment, copies one array to another existing array
+  //make arrays the same size
+  while(arrSize < rhs.getArraySize())
   {
-    //run the resize function
     resizeArray();
   }
-  for(std::size_t i = 1; i<this->arrSize; i++)
+  //update used space
+  usedSpace = rhs.getLength();
+
+  //copy all values
+  for(std::size_t i = 1; i <= arrSize; i++)
   {
-    arrPoint[i] = rhs.getEntry(i); // assigns values from rhs into this pointer
+    arrPoint[i] = rhs.getEntry(i);
   }
+
   return *this;
 }
 
