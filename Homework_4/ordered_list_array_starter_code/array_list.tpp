@@ -261,6 +261,28 @@ bool ArrayList<T>::remove(std::size_t position){
     //return
     return true;
   }
+
+  //case 4 -- item at the end of array
+  if(position == usedSpace)
+  {
+    //copy all items until position
+    for(std::size_t i = 1; i <position; i++)
+    {
+      tempPoint[i] = arrPoint[i];
+    }
+    tempPoint[position] = 0;
+    //copy it all back
+    for(std::size_t j = 1; j < arrSize; j++)
+    {
+      arrPoint[j] = tempPoint[j];
+    }
+    //reduce size
+    usedSpace--;
+    //free memory
+    delete [] tempPoint;
+    //return
+    return true;
+  }
   return false;
 }
 

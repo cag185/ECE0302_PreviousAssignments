@@ -114,6 +114,18 @@ TEST_CASE( "Remove", "[ArrayList]" ) {
   REQUIRE(list.getEntry(3) != 100);
   REQUIRE(list.getEntry(3) == 3); // all works, test case 3 good
 
+  //test case 4
+  //create new array
+  ArrayList<int> list2; 
+  //add a few values
+  REQUIRE(list2.insert(1,1) == true);
+  REQUIRE(list2.insert(2,2) == true);
+  REQUIRE(list2.insert(3,3) == true);
+  //remove last item
+  REQUIRE(list2.remove(3) == true);
+  REQUIRE(list2.getLength() == 2);
+  REQUIRE(list2.getEntry(3) != 3); // all remove cases work
+
 }
 
 TEST_CASE( "clear", "[ArrayList]" ) {
