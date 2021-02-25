@@ -130,7 +130,16 @@ TEST_CASE( "Remove", "[ArrayList]" ) {
 
 TEST_CASE( "clear", "[ArrayList]" ) {
 
-  ArrayList<int> list; // creates an integer list
+  ArrayList<int> list2; // creates an integer list
+  //add a few values
+  REQUIRE(list2.insert(1,5)== true);
+  REQUIRE(list2.insert(2,6)== true);
+  REQUIRE(list2.insert(3,7)== true);
+  REQUIRE(list2.insert(4,8)== true);
+  //clear
+  list2.clear();
+  //make sure used space == 0
+  REQUIRE(list2.getLength() == 0); // works
 }
 
 TEST_CASE( "getEntry", "[ArrayList]" ) {
