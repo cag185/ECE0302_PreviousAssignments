@@ -145,6 +145,13 @@ TEST_CASE( "clear", "[ArrayList]" ) {
 TEST_CASE( "getEntry", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
+  //insert some items
+  REQUIRE(list.insert(1, 100) == true);
+  REQUIRE(list.insert(2,200) == true);
+  
+  //make sure values are right
+  REQUIRE(list.getEntry(1) == 100);
+  REQUIRE(list.getEntry(2) == 200); // works
 }
 
 TEST_CASE( "setEntry", "[ArrayList]" ) {
