@@ -178,4 +178,12 @@ TEST_CASE( "setEntry", "[ArrayList]" ) {
 TEST_CASE( "resizeArray", "[ArrayList]" ) {
 
   ArrayList<int> list; // creates an integer list
+  //list starts at getArraySize = 1
+  REQUIRE(list.getArraySize() == 1);
+  list.resizeArray();
+  //make sure the size doubles
+  REQUIRE(list.getArraySize() == 2);
+  //repeat
+  list.resizeArray();
+  REQUIRE(list.getArraySize() == 4);
 }
