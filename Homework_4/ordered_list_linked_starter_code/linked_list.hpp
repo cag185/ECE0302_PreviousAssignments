@@ -47,7 +47,12 @@ public:
 
 private:
 
-  //TODO
+  //Need three pointers
+    //1. head
+    //2. tail
+    //3. next -- already created in Node
+  Node <T>* head; //creates head pointer
+  Node <T>* tail; //creates tail
   
 };
 

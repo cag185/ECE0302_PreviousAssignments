@@ -3,13 +3,16 @@
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-  //TODO
+  //initialize head and tail pointer
+  head = NULL;
+  tail = NULL;
 }
 
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-  //TODO
+  //free all memory allocated
+  
 }
 
 template <typename T>
