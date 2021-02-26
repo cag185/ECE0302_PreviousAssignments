@@ -55,6 +55,24 @@ TEST_CASE( "Copy assignment", "[LinkedList]" ) {
 TEST_CASE( "Swap", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
+  //add two values
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(2,2) == true);
+
+  //create second list
+  LinkedList<int> list2;
+  //add two values
+  REQUIRE(list2.insert(1,3) == true);
+  REQUIRE(list2.insert(2,4) == true);
+
+  //perform switch
+  list.swap(list, list2);
+
+//make sure values are right
+  REQUIRE(list.getEntry(1) == 3);
+  REQUIRE(list.getEntry(2) == 4);
+  REQUIRE(list2.getEntry(1) == 1);
+  REQUIRE(list2.getEntry(2) == 2);
 }
 
 //determine if a list is empty

@@ -43,7 +43,17 @@ LinkedList<T>::LinkedList(const LinkedList<T>& x)
 template <typename T>
 void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
 {
-  //TODO
+  //swap head pointers
+  Node<T>* head1 = new Node<T>;
+  head1  = x.head;
+  std::size_t tempSize = x.listLength;
+  
+  //swap
+  x.head = y.head;
+  y.head = head1;
+  //swap sizes
+  x.listLength = y.listLength;
+  y.listLength = tempSize;
 }
 
 //copy assignment
