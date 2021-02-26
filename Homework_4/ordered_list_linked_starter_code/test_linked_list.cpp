@@ -59,12 +59,49 @@ TEST_CASE( "insert", "[LinkedList]" ) {
   //test case 1 again
   REQUIRE(list.insert(1,3) == true);
   REQUIRE(list.getEntry(1) == 3);
+  REQUIRE(list.getEntry(2) == 2);
+  REQUIRE(list.getEntry(3) == 1);
   REQUIRE(list.getLength() == 3); // also works
 
   //test case 2
-  REQUIRE(list.insert(2,4) == true); //order should be 1 4 2 3
+  REQUIRE(list.insert(2,4) == true); //order should be 3 4 2 1
+  REQUIRE(list.getEntry(1) == 3);
+  REQUIRE(list.getEntry(2) == 4); 
+  REQUIRE(list.getEntry(3) == 2); 
+  REQUIRE(list.getEntry(4) == 1);
   REQUIRE(list.getLength() == 4);
+
+  //test case 2 again
+  LinkedList<int> listTest;
+  REQUIRE(listTest.insert(1,50) == true);
+  REQUIRE(listTest.insert(1,40) == true);
+  REQUIRE(listTest.insert(1,30) == true);
+  REQUIRE(listTest.insert(1,20) == true);
+  REQUIRE(listTest.insert(1,10) == true);
+
+  //insert value at position 4
+  REQUIRE(listTest.insert(4,400) == true);
+  //report values
+  REQUIRE(listTest.getLength() == 6);
+  REQUIRE(listTest.getEntry(1) == 10);
+  REQUIRE(listTest.getEntry(2) == 20);
+  REQUIRE(listTest.getEntry(3) == 30);
+  REQUIRE(listTest.getEntry(4) == 400);
+  REQUIRE(listTest.getEntry(5) == 40);
+  REQUIRE(listTest.getEntry(6) == 50);
+
+
+  //Test case 3 // all cases work
+  //create a new linked list
+  LinkedList<int> list2;
+  REQUIRE(list2.insert(1,1)== true);
+  REQUIRE(list2.getEntry(1) == 1);
+  REQUIRE(list2.insert(2,2)== true);
+  REQUIRE(list2.getEntry(2) == 2);
+  REQUIRE(list2.insert(3,3)== true);
+  REQUIRE(list2.getEntry(3) == 3); 
 }
+
 
 //remove an item
 TEST_CASE( "remove", "[LinkedList]" ) {

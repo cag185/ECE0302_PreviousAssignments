@@ -85,6 +85,51 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
       //return
       return true;
     }
+
+    //case 2
+    if(position > 1 && position < listLength)
+    {
+      //set newpointer = to head
+      newNodePtr = head;
+      //create a second node and placeholder node
+      Node <T>* placeholder = new Node<T>;
+      Node <T>* newNode2 = new Node<T>;
+      //loop until postion
+      for(std::size_t i = 1; i<position-1; i++)
+      {
+        newNodePtr = newNodePtr->getNext(); // follow the list until pos
+      }
+      placeholder = newNodePtr->getNext(); //assign placeholder to hold the OG position value
+      newNode2->setItem(item); //set the new nodes data
+      newNodePtr->setNext(newNode2); //set the new position to be newNode2
+      newNode2->setNext(placeholder); // put new node before placeholder, dropping it after newNodePtr but before placeholder
+      //increase length
+      listLength++;
+      //return
+      return true;
+    }
+    //case 3
+    if(position == listLength+1)
+    {
+      //create a second node
+      Node <T>* newNode2 = new Node<T>;
+      //assign pointer to head
+      newNodePtr = head;
+      for(std::size_t i = 1; i <listLength; i++)
+      {
+          //copy all values
+          newNodePtr = newNodePtr->getNext();
+      }
+      //now newNodePtr = the last item in the list
+      //assign value to new node
+      newNode2->setItem(item);
+      //set new node to be the next node
+      newNodePtr->setNext(newNode2);
+      //increase size
+      listLength++;
+      //return
+      return true;
+    }
   return false;
 }
 
