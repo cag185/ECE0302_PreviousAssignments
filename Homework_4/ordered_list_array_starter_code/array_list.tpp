@@ -184,6 +184,7 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
       //return
       return true;
     }
+  delete [] tempPoint; 
   return false;
 }
 
@@ -212,6 +213,8 @@ bool ArrayList<T>::remove(std::size_t position){
     arrSize = 1;
     arrPoint = new T [arrSize]; // resets array size to 1
     usedSpace--; // decriment usedSpace
+    //delete pointer
+    delete [] tempPoint;
     return true;
   }
   //2.
@@ -283,6 +286,7 @@ bool ArrayList<T>::remove(std::size_t position){
     //return
     return true;
   }
+  delete [] tempPoint;
   return false;
 }
 
