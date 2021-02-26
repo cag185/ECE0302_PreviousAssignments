@@ -108,11 +108,12 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
     //3. insert at the end
 
     //create a temp node
-    Node <T>* newNodePtr = new Node<T>;
+    Node <T>* newNodePtr;// = new Node<T>;
 
     //case 1
     if(position == 1)
     {
+      newNodePtr = new Node <T>;
       //set value
       newNodePtr->setItem(item);
       //set next
@@ -182,7 +183,7 @@ bool LinkedList<T>::remove(std::size_t position)
     //3. remove item from the end
 
   //create a temp node
-    Node <T>* newNodePtr = new Node<T>;
+    Node <T>* newNodePtr; //= new Node<T>;
     Node <T>* newNode;// = new Node<T>;
     Node <T>* placeholder;// = new Node<T>;
   //1.
