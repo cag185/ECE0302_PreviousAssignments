@@ -14,7 +14,7 @@ TEST_CASE( "Constructor", "[LinkedList]" ) {
   REQUIRE(list.getLength() == 0); 
 }
 
-//test case for copy constructor
+//test case for copy constructor -- DONE
 TEST_CASE( "Copy constructor", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
@@ -35,6 +35,20 @@ TEST_CASE( "Copy constructor", "[LinkedList]" ) {
 TEST_CASE( "Copy assignment", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
+  //add a few values
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(2,1) == true);
+  REQUIRE(list.insert(3,1) == true);
+
+  //create a new list
+  LinkedList<int> list2(list);
+  //copy values from list 1 into list 2
+  list2 = list;
+  //check for issues
+  REQUIRE(list2.getLength() == 3);
+  REQUIRE(list2.getEntry(1) == 1);
+  REQUIRE(list2.getEntry(2) == 1);
+  REQUIRE(list2.getEntry(3) == 1);
 }
 
 //swap two lists

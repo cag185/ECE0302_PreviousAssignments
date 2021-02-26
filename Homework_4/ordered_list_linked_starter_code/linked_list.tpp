@@ -49,7 +49,21 @@ void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
 {
-  //TODO
+  //incrementing variable
+  std::size_t i = 1;
+  //set head to temp pointer
+  Node<T>* newNodePtr = new Node<T>;
+  newNodePtr = x.head;
+  //make size = 0
+  listLength = 0;
+  //loop through all elements -- copy
+  while(i <= x.getLength())
+  {
+    this->insert(i, x.getEntry(i)); //snag value at i from x and set it to the node
+    newNodePtr = newNodePtr->getNext();
+    //increment
+    i++;
+  }
   return *this;
 }
 
