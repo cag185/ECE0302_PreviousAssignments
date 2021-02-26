@@ -234,7 +234,10 @@ bool LinkedList<T>::remove(std::size_t position)
 template <typename T>
 void LinkedList<T>::clear()
 {
-  //TODO
+  //remove all values
+  head = NULL;
+  //change size
+  listLength = 0;
 }
 
 //get a specific entry -- works

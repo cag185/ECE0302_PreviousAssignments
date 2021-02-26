@@ -156,6 +156,14 @@ TEST_CASE( "remove", "[LinkedList]" ) {
 TEST_CASE( "clear", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
+  //add some values
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(1,2) == true);
+  REQUIRE(list.insert(1,3) == true);
+  REQUIRE(list.getLength() == 3);
+  list.clear();
+  REQUIRE(list.getLength() == 0);
+
 }
 
 //get entry
