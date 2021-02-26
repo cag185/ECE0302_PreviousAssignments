@@ -14,7 +14,8 @@ template <typename T>
 LinkedList<T>::~LinkedList()
 {
   //free all memory allocated
- 
+  //delete newNodePtr, 
+  clear();
 }
 
 //copy constructor
@@ -235,9 +236,18 @@ template <typename T>
 void LinkedList<T>::clear()
 {
   //remove all values
-  head = NULL;
-  //change size
-  listLength = 0;
+  //set temp pointer to head
+
+  Node<T> *newNodePtr = head;
+  Node<T> *next = NULL;
+  while(newNodePtr != NULL) // loop through every node and free it
+  {
+    next = newNodePtr->getNext();
+    free(newNodePtr);
+    newNodePtr = next;
+  }
+  head = NULL; //free head
+  listLength = 0; //reset size
 }
 
 //get a specific entry -- works
@@ -260,5 +270,16 @@ T LinkedList<T>::getEntry(std::size_t position) const
 template <typename T>
 void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 {
-  //TODO
+  //create a temp node
+  Node<T>* newNodePtr = new Node<T>;
+  newNodePtr = head; // set at the beggining
+  //loop for position
+  for(std::size_t i = 1; i <=position-1; i++)
+  {
+   newNodePtr = newNodePtr->getNext(); // advances through list 
+  }
+  //node should be at correct value
+  //change
+  newNodePtr->setItem(newValue);
 }
+
