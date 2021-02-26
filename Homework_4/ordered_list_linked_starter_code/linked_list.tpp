@@ -25,7 +25,7 @@ LinkedList<T>::LinkedList(const LinkedList<T>& x)
   //incrementing variable
   std::size_t i = 1;
   //set head to temp pointer
-  Node<T>* newNodePtr = new Node<T>;
+  Node<T>* newNodePtr;// = new Node<T>;
   newNodePtr = x.head;
   //make size = 0
   listLength = 0;
@@ -44,7 +44,7 @@ template <typename T>
 void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
 {
   //swap head pointers
-  Node<T>* head1 = new Node<T>;
+  Node<T>* head1;
   head1  = x.head;
   std::size_t tempSize = x.listLength;
   
@@ -63,7 +63,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
   //incrementing variable
   std::size_t i = 1;
   //set head to temp pointer
-  Node<T>* newNodePtr = new Node<T>;
+  Node<T>* newNodePtr;
   newNodePtr = x.head;
   //make size = 0
   listLength = 0;
@@ -131,7 +131,7 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
       //set newpointer = to head
       newNodePtr = head;
       //create a second node and placeholder node
-      Node <T>* placeholder = new Node<T>;
+      Node <T>* placeholder; //= new Node<T>;
       Node <T>* newNode2 = new Node<T>;
       //loop until postion
       for(std::size_t i = 1; i<position-1; i++)
@@ -183,8 +183,8 @@ bool LinkedList<T>::remove(std::size_t position)
 
   //create a temp node
     Node <T>* newNodePtr = new Node<T>;
-    Node <T>* newNode = new Node<T>;
-    Node <T>* placeholder = new Node<T>;
+    Node <T>* newNode;// = new Node<T>;
+    Node <T>* placeholder;// = new Node<T>;
   //1.
   if(position == 1)
   {
@@ -265,7 +265,7 @@ template <typename T>
 T LinkedList<T>::getEntry(std::size_t position) const
 {
   //create temp pointer
-  Node<T>* newNodePointer = new Node<T>;
+  Node<T>* newNodePointer;// = new Node<T>;
   newNodePointer = head;
   //create a loop that starts at head and for Position times, returns the value of data
   for(std::size_t i = 1; i < position; i++ )
@@ -281,7 +281,7 @@ template <typename T>
 void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 {
   //create a temp node
-  Node<T>* newNodePtr = new Node<T>;
+  Node<T>* newNodePtr;// = new Node<T>;
   newNodePtr = head; // set at the beggining
   //loop for position
   for(std::size_t i = 1; i <=position-1; i++)
