@@ -137,8 +137,69 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
 template <typename T>
 bool LinkedList<T>::remove(std::size_t position)
 {
-  //TODO
-  return true;
+  //There will be three cases
+    //1. remove the item from the beggining
+    //2. remove item from middle
+    //3. remove item from the end
+
+  //create a temp node
+    Node <T>* newNodePtr = new Node<T>;
+    Node <T>* newNode = new Node<T>;
+    Node <T>* placeholder = new Node<T>;
+  //1.
+  if(position == 1)
+  {
+    //snag the next item in line
+    newNodePtr = head->getNext();
+    //remove head
+    head = newNodePtr;
+    //decrease size
+    listLength--;
+    //return
+    return true;
+  }
+
+  //2. in the middle
+  if(position > 1 && position < listLength)
+  {
+    //start at head
+    newNodePtr = head;
+    //follow the linked list until position
+    for(std::size_t i = 1; i < position-1; i++)
+    {
+      newNodePtr = newNodePtr->getNext();
+    }
+    //node should be at position-1 
+    //need placeholder to hold value that will be removed
+    placeholder = newNodePtr->getNext(); // placeholder is node to be removed
+    newNode = placeholder->getNext(); //new node is node after place holder
+    //assign pointers to skip placeholder
+    newNodePtr->setNext(newNode);
+
+    //reduce size
+    listLength--;
+    //return
+    return true;
+  }
+
+  //case 3 at the end
+  if(position== listLength)
+  {
+    //loop until before the last item and make the next null
+    newNodePtr = head;  //assign to head
+    for(std::size_t a = 1; a <position-1; a++)
+    {
+      newNodePtr = newNodePtr->getNext(); // follow list till before position
+    }
+    newNodePtr->setNext(NULL); //make node at position = null
+
+    //reduce size
+    listLength--;
+    //return
+    return true;
+  }
+
+  return false;
 }
 
 //clear all data from the list

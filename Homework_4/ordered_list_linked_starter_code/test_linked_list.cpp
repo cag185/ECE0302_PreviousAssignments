@@ -107,6 +107,24 @@ TEST_CASE( "insert", "[LinkedList]" ) {
 TEST_CASE( "remove", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
+  //add a few values -- test case 1
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.remove(1) == true);
+  REQUIRE(list.getLength()==0);
+
+  //add a few more values -- test case 2
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(2,2) == true);
+  REQUIRE(list.insert(3,3) == true);
+  REQUIRE(list.remove(2) == true);
+  REQUIRE(list.getEntry(1) == 1);
+  REQUIRE(list.getEntry(2) == 3);
+  REQUIRE(list.getLength() == 2);
+
+  //remove value at the end -- test case 3
+  REQUIRE(list.remove(2) == true);
+  REQUIRE(list.getLength() == 1);
+  REQUIRE(list.getEntry(1) == 1);
 }
 
 //clear
