@@ -69,7 +69,7 @@ TEST_CASE( "getLength", "[LinkedList]" ) {
   LinkedList<int> list;
 }
 
-//insert
+//insert // done
 TEST_CASE( "insert", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
@@ -128,7 +128,7 @@ TEST_CASE( "insert", "[LinkedList]" ) {
 }
 
 
-//remove an item
+//remove an item // done
 TEST_CASE( "remove", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
@@ -152,7 +152,7 @@ TEST_CASE( "remove", "[LinkedList]" ) {
   REQUIRE(list.getEntry(1) == 1);
 }
 
-//clear
+//clear // done
 TEST_CASE( "clear", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
@@ -170,6 +170,15 @@ TEST_CASE( "clear", "[LinkedList]" ) {
 TEST_CASE( "getEntry", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
+  //add some values
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(1,2) == true);
+  REQUIRE(list.insert(1,3) == true);
+
+  //make sure values show at correct indices
+  REQUIRE(list.getEntry(1) == 3);
+  REQUIRE(list.getEntry(2) == 2);
+  REQUIRE(list.getEntry(3) == 1);
 }
 
 //set entry
