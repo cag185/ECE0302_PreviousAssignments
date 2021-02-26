@@ -51,7 +51,6 @@ private:
     //1. head
     //3. nodePtr
   Node <T>* head; //creates head pointer
-  Node <T>* nodePtr; // creates a node pointer to use
   std::size_t listLength;
   
 };

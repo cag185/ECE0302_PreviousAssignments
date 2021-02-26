@@ -253,7 +253,7 @@ void LinkedList<T>::clear()
   while(newNodePtr != NULL) // loop through every node and free it
   {
     next = newNodePtr->getNext();
-    free(newNodePtr);
+    delete [] newNodePtr;
     newNodePtr = next;
   }
   head = NULL; //free head
