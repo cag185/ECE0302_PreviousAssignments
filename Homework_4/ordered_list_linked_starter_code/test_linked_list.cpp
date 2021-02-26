@@ -18,6 +18,17 @@ TEST_CASE( "Constructor", "[LinkedList]" ) {
 TEST_CASE( "Copy constructor", "[LinkedList]" ) {
   //create a linked list
   LinkedList<int> list;
+  //add a few values
+  REQUIRE(list.insert(1,1) == true);
+  REQUIRE(list.insert(2,1) == true);
+  REQUIRE(list.insert(3,1) == true);
+
+  //create new list -- copied from og
+  LinkedList<int> list2(list);
+  REQUIRE(list2.getLength() == 3);
+  REQUIRE(list2.getEntry(1) == 1);
+  REQUIRE(list2.getEntry(2) == 1);
+  REQUIRE(list2.getEntry(3) == 1);
 }
 
 //copy assignment
