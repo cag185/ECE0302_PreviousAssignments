@@ -191,10 +191,14 @@ bool LinkedList<T>::remove(std::size_t position)
   {
     //snag the next item in line
     newNodePtr = head->getNext();
+    delete head;
     //remove head
     head = newNodePtr;
     //decrease size
     listLength--;
+    delete newNodePtr;
+    //delete newNode;
+    //delete placeholder;
     //return
     return true;
   }
@@ -218,6 +222,8 @@ bool LinkedList<T>::remove(std::size_t position)
 
     //reduce size
     listLength--;
+    //delete placeholder
+    delete placeholder;
     //return
     return true;
   }
@@ -231,11 +237,13 @@ bool LinkedList<T>::remove(std::size_t position)
     {
       newNodePtr = newNodePtr->getNext(); // follow list till before position
     }
+    placeholder = newNodePtr->getNext();
     newNodePtr->setNext(NULL); //make node at position = null
 
     //reduce size
     listLength--;
     //return
+    delete placeholder;
     return true;
   }
 
@@ -254,7 +262,7 @@ void LinkedList<T>::clear()
   while(newNodePtr != NULL) // loop through every node and free it
   {
     next = newNodePtr->getNext();
-    delete [] newNodePtr;
+    free(newNodePtr);
     newNodePtr = next;
   }
   head = NULL; //free head
